@@ -1,4 +1,6 @@
 from django.shortcuts import HttpResponse, render
+from django.http import Http404,HttpResponseNotFound
+
 blogs = [
     {
         "id": 1,
@@ -41,10 +43,14 @@ blogs = [
         "content": "An easy-to-follow introduction to machine learning concepts, covering supervised vs unsupervised learning, key algorithms, and practical implementation steps."
     }
 ]
-
+Categories=[
+'Travel',
+'Food',
+'Place'
+]
 # Create your views here.
 def home(request):
-    return render(request,'posts/index.html',{'posts':blogs})
+    return render(request,'posts/index.html',{'posts':blogs ,'Categories':Categories})
 
 def post(request,id):
     post_dict=[]
@@ -52,7 +58,11 @@ def post(request,id):
         if post["id"]==id:
             post_dict=post
             break
-    return render(request,'posts/post.html',{'post':post_dict})
+    if post_dict:
+        return render(request,'posts/post.html',{'post':post_dict})
+    else:
+        # return HttpResponseNotFound("Post is Not Found")
+        raise Http404("templates\404.html")
 
 def global_page(request):
     return render(request,'global_temp.html')

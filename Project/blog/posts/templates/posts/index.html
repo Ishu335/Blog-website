@@ -1,11 +1,18 @@
 {%extends "base.html"%}
 {%block title%} Home {%endblock title%}
+
+{%block categories%}
+    {%for i in Categories%}
+        <li><a class="dropdown-item" href="#">{{i}}</a></li>
+    {%endfor%}
+{%endblock categories%}
+
 {%block body %}
 <h1 class="my-3">Latest</h1>
 <div class="row">
     {% for post  in posts %}
         {% include "posts\includes\postcards.html" %}
     {% endfor %}
-    
+
 </div>
 {%endblock body%}

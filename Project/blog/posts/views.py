@@ -1,5 +1,6 @@
 from django.shortcuts import HttpResponse, render
 from django.http import Http404,HttpResponseNotFound
+from .models import Post
 
 blogs = [
     {
@@ -50,7 +51,8 @@ Categories=[
 ]
 # Create your views here.
 def home(request):
-    return render(request,'posts/index.html',{'posts':blogs ,'Categories':Categories})
+    all_post=Post.objects.all()
+    return render(request,'posts/index.html',{'posts':all_post ,'Categories':Categories})
 
 def post(request,id):
     post_dict=[]

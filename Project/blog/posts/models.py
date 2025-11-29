@@ -8,5 +8,5 @@ class Post(models.Model):
     post_content=models.TextField()
     publish_date=models.DateTimeField(auto_now=True) # auto change will the post is create or update 
     
-
-# Create your models here.
+    def __str__(self):
+        return self.post_title

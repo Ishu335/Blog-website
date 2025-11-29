@@ -28,7 +28,7 @@ print("🧭 BASE_DIR:", BASE_DIR)
 print("🔍 TEMPLATE DIRS:", BASE_DIR / 'templates')
 print("🔍 Static DIRS:", BASE_DIR / 'static')
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
